@@ -5,7 +5,8 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  Modal
+  Modal,
+  Image
 } from "react-native";
 
 import { Camera } from "expo-camera";
@@ -40,6 +41,7 @@ export default function App() {
       const data = await camRef.current.takePictureAsync();
 
       setCapturedPhoto(data.uri);
+      setOpen(true);
     }
   }
 
@@ -88,6 +90,11 @@ export default function App() {
                 >
                   <FontAwesome name="window-close" size={50} color="#FF0000" />
                 </TouchableOpacity>
+
+                <Image
+                  style={{ width: "100%", height: 300, borderRadius: 20 }}
+                  source={{ uri: capturedPhoto }}
+                />
               </View>
             </Modal>
           )}
